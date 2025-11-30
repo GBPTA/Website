@@ -643,48 +643,7 @@
     </div>
     <button id="start-btn" type="submit">Start Animation</button>
   </form>
-
-  <!-- Package Pickup and Delivery Slideshow Section -->
-  <div class="slideshow-container" id="ppd-section" style="top: 245vh;">
-    <h4>Scenarios</h4>
-    <div class="slideshow-wrapper">
-      <div class="slide active">
-        <div class="slide-content">
-          <div class="slide-title">Package Pickup & Delivery</div>
-          <div class="slide-description">
-            Robots collect packages from sources and deliver them to destinations while optimizing routes, avoiding conflicts, and meeting constraints such as time windows and capacities.
-          </div>
-          <div style="text-align:center; margin-top: 16px;">
-            <button class="slide-btn" id="ppdSlideTestBtn">Test Pickup & Delivery →</button>
-          </div>
-        </div>
-      </div>
-      <div class="slide">
-        <div class="slide-content">
-          <div class="slide-title">Pursuit–Evasion</div>
-          <div class="slide-description">
-            Coordinating pursuer robots to locate and intercept an evader while handling uncertainty, maximizing coverage, and ensuring collision-free motion in dynamic environments.
-          </div>
-          <div style="text-align:center; margin-top: 16px;">
-            <button class="slide-btn" id="peSlideTestBtn">Test Pursuit–Evasion →</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="slideshow-controls">
-      <button class="slide-btn" id="ppdPrevBtn">← Previous</button>
-      <div class="slide-indicators" id="ppdIndicators">
-        <span class="indicator active" data-slide="0"></span>
-        <span class="indicator" data-slide="1"></span>
-      </div>
-      <button class="slide-btn" id="ppdNextBtn">Next →</button>
-    </div>
-
-    <div class="slide-counter">
-      <span id="ppdCurrentSlide">1</span> / <span id="ppdTotalSlides">2</span>
-    </div>
-  </div>
+  
 
   <script>
     // Slideshow functionality
@@ -753,75 +712,7 @@
     // Initialize
     showSlide(0);
     totalSlidesSpan.textContent = slides.length;
-
-    // Package Pickup & Delivery slideshow functionality
-    let ppdCurrentSlideIndex = 0;
-    const ppdSlides = document.querySelectorAll('#ppd-section .slide');
-    const ppdIndicators = document.querySelectorAll('#ppd-section .indicator');
-    const ppdPrevBtn = document.getElementById('ppdPrevBtn');
-    const ppdNextBtn = document.getElementById('ppdNextBtn');
-    const ppdCurrentSlideSpan = document.getElementById('ppdCurrentSlide');
-    const ppdTotalSlidesSpan = document.getElementById('ppdTotalSlides');
-
-    function ppdShowSlide(index) {
-      ppdSlides.forEach(slide => slide.classList.remove('active'));
-      ppdIndicators.forEach(indicator => indicator.classList.remove('active'));
-      ppdSlides[index].classList.add('active');
-      ppdIndicators[index].classList.add('active');
-      ppdCurrentSlideSpan.textContent = index + 1;
-      ppdPrevBtn.disabled = index === 0;
-      ppdNextBtn.disabled = index === ppdSlides.length - 1;
-    }
-
-    function ppdNextSlide() {
-      if (ppdCurrentSlideIndex < ppdSlides.length - 1) {
-        ppdCurrentSlideIndex++;
-        ppdShowSlide(ppdCurrentSlideIndex);
-      }
-    }
-
-    function ppdPrevSlide() {
-      if (ppdCurrentSlideIndex > 0) {
-        ppdCurrentSlideIndex--;
-        ppdShowSlide(ppdCurrentSlideIndex);
-      }
-    }
-
-    ppdNextBtn.addEventListener('click', ppdNextSlide);
-    ppdPrevBtn.addEventListener('click', ppdPrevSlide);
-
-    document.querySelectorAll('#ppd-section .indicator').forEach((indicator, index) => {
-      indicator.addEventListener('click', () => {
-        ppdCurrentSlideIndex = index;
-        ppdShowSlide(ppdCurrentSlideIndex);
-      });
-    });
-
-    setInterval(() => {
-      if (ppdCurrentSlideIndex < ppdSlides.length - 1) {
-        ppdNextSlide();
-      } else {
-        ppdCurrentSlideIndex = 0;
-        ppdShowSlide(ppdCurrentSlideIndex);
-      }
-    }, 6000);
-
-    ppdShowSlide(0);
-    ppdTotalSlidesSpan.textContent = ppdSlides.length;
-
-    // Navigate to test pages for each slide
-    const ppdSlideTestBtn = document.getElementById('ppdSlideTestBtn');
-    if (ppdSlideTestBtn) {
-      ppdSlideTestBtn.addEventListener('click', function() {
-        window.location.href = 'robot_task_map2.html';
-      });
-    }
-    const peSlideTestBtn = document.getElementById('peSlideTestBtn');
-    if (peSlideTestBtn) {
-      peSlideTestBtn.addEventListener('click', function() {
-        window.location.href = 'robot_task_map.html';
-      });
-    }
+    
     
     // Form submission
     document.getElementById('form-section').addEventListener('submit', function(e) {
