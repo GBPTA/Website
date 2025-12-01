@@ -69,6 +69,8 @@
       transform: translateX(-50%);
       opacity: 1;
       transition: opacity 0.3s ease, transform 0.3s ease;
+      max-width: 650px;
+      width: 95%;
     }
     .pose-input-group label {
       font-weight: bold;
@@ -300,6 +302,139 @@
     
     .content-section.visible {
       opacity: 1;
+    }
+    
+    .realworld-box {
+      position: absolute;
+      top: 245vh;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 20px 30px;
+      border-radius: 12px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+      max-width: 650px;
+      width: 95%;
+      text-align: center;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .realworld-box h3 {
+      margin: 0 0 10px 0;
+      color: #1976d2;
+      font-size: 1.4rem;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .realworld-box video {
+      width: 100%;
+      height: 550px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-top: 12px;
+      background: #000;
+    }
+
+    .realworld-box img {
+      width: 100%;
+      height: 200px;
+      object-fit: contain;
+      border-radius: 8px;
+      margin-top: 12px;
+      background: #fff;
+    }
+
+    .pursuit-box {
+      position: absolute;
+      top: auto;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 20px 30px;
+      border-radius: 12px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+      max-width: 650px;
+      width: 95%;
+      text-align: center;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .pursuit-box h3 {
+      margin: 0 0 10px 0;
+      color: #1976d2;
+      font-size: 1.4rem;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .pursuit-box p {
+      margin: 0;
+      color: #333;
+      font-size: 14px;
+      line-height: 1.6;
+      text-align: center;
+      margin-top: 8px;
+    }
+    
+    .pursuit-videos {
+      display: flex;
+      flex-direction: column; /* stack videos vertically */
+      gap: 12px;
+      margin-top: 12px;
+      align-items: center;
+    }
+
+    .pursuit-videos video {
+      width: 100%;
+      height: 550px; /* match slideshow height */
+      object-fit: cover;
+      border-radius: 8px;
+      background: #000;
+      display: block;
+    }
+
+    /* Pickup and Delivery box (matches other boxes) */
+    .pickup-box {
+      position: absolute;
+      top: auto;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 20px 30px;
+      border-radius: 12px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+      max-width: 650px;
+      width: 95%;
+      text-align: center;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .pickup-box h3 {
+      margin: 0 0 10px 0;
+      color: #1976d2;
+      font-size: 1.4rem;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .pickup-box video {
+      width: 100%;
+      height: 550px; /* match slideshow height */
+      object-fit: cover;
+      border-radius: 8px;
+      background: #000;
+      display: block;
+      margin-top: 12px;
     }
   </style>
 </head>
@@ -644,6 +779,42 @@
     <button id="start-btn" type="submit">Start Animation</button>
   </form>
   
+  <!-- Real World Experiments box (placed after form so it appears lowest) -->
+  <div class="realworld-box" id="realworld-section">
+    <h3>Real World Experiments</h3>
+    <video controls playsinline muted>
+      <source src="1.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <p style="margin-top:10px; color:#333; font-size:14px;">Real-world robot experiments demonstrating GBPTA in action.</p>
+    <img src="result.png" alt="Result plot" id="realworld-plot">
+  </div>
+
+  <!-- Pursuit Evasion box (bottom-most) -->
+  <div class="pursuit-box" id="pursuit-section">
+    <h3>Pursuit Evasion</h3>
+    <p>Example pursuit–evasion experiment results and visualizations.</p>
+    <div class="pursuit-videos">
+      <video controls playsinline>
+        <source src="2.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <video controls playsinline>
+        <source src="3.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  </div>
+
+  <!-- Pickup and Delivery box (placed below Pursuit Evasion) -->
+  <div class="pickup-box" id="pickup-section">
+    <h3>Pickup and Delivery</h3>
+    <p style="margin-top:8px; color:#333; font-size:14px;">Package pickup & delivery experiment video.</p>
+    <video controls playsinline>
+      <source src="pp.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
 
   <script>
     // Slideshow functionality
@@ -726,6 +897,82 @@
       ].map(id => `${id}=${encodeURIComponent(document.getElementById(id).value)}`).join('&');
       window.location.href = `graph_withfactorsTA.html?${params}`;
     });
+
+      // Real World video: mute (already muted attribute), set 3x speed, autoplay if possible,
+      // and stop (pause) when reaching 51 seconds.
+      (function() {
+        const rwVideo = document.querySelector('#realworld-section video');
+        if (!rwVideo) return;
+
+        // Ensure muted and set playback rate
+        try {
+          rwVideo.muted = true;
+          rwVideo.playbackRate = 3.0;
+        } catch (e) {}
+
+        // Try to autoplay (muted autoplay is usually allowed)
+        const p = rwVideo.play();
+        if (p && typeof p.then === 'function') {
+          p.catch(() => {});
+        }
+
+        // Pause when reaching 51 seconds
+        function checkStop() {
+          if (rwVideo.currentTime >= 51) {
+            rwVideo.pause();
+            rwVideo.removeEventListener('timeupdate', checkStop);
+          }
+        }
+
+        rwVideo.addEventListener('timeupdate', checkStop);
+        // In case metadata isn't loaded yet, ensure we set rate after metadata
+        rwVideo.addEventListener('loadedmetadata', () => {
+          try { rwVideo.playbackRate = 3.0; } catch (e) {}
+        });
+      })();
+
+        // Position Pursuit Evasion box directly below the Real World section
+        (function() {
+          const realworld = document.getElementById('realworld-section');
+          const pursuit = document.getElementById('pursuit-section');
+          if (!realworld || !pursuit) return;
+
+          function positionPursuit() {
+            // Get distance from document top to bottom of realworld section
+            const rect = realworld.getBoundingClientRect();
+            const docTop = window.scrollY || window.pageYOffset;
+            const bottomY = docTop + rect.top + realworld.offsetHeight;
+            // Add small gap
+            const gap = 20; // px
+            pursuit.style.top = (bottomY + gap) + 'px';
+          }
+
+          // Run after load to ensure sizes are known
+          window.addEventListener('load', positionPursuit);
+          window.addEventListener('resize', positionPursuit);
+          // Also run after a short timeout in case layout changes
+          setTimeout(positionPursuit, 300);
+        })();
+
+        // Position Pickup and Delivery box directly below the Pursuit Evasion section
+        (function() {
+          const pursuit = document.getElementById('pursuit-section');
+          const pickup = document.getElementById('pickup-section');
+          if (!pursuit || !pickup) return;
+
+          function positionPickup() {
+            const rect = pursuit.getBoundingClientRect();
+            const docTop = window.scrollY || window.pageYOffset;
+            const bottomY = docTop + rect.top + pursuit.offsetHeight;
+            const gap = 20; // px
+            pickup.style.top = (bottomY + gap) + 'px';
+          }
+
+          window.addEventListener('load', positionPickup);
+          window.addEventListener('resize', positionPickup);
+          setTimeout(positionPickup, 400);
+        })();
   </script>
 </body>
 </html>
+
